@@ -16,8 +16,14 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Search Repository',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorSchemeSeed: Colors.blueGrey,
             useMaterial3: true,
+            brightness: Brightness.light,
+          ),
+          darkTheme: ThemeData(
+            colorSchemeSeed: Colors.blueGrey,
+            useMaterial3: true,
+            brightness: Brightness.dark,
           ),
           home: child,
         );

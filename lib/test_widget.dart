@@ -8,10 +8,17 @@ class TestWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100.r,
       height: 100.r,
-      color: Colors.red,
+      child: Card(
+        child: Center(
+          child: Text(
+            'Hello, World!',
+            style: TextStyle(fontSize: 4.sp),
+          ),
+        ),
+      ),
     );
   }
 }
