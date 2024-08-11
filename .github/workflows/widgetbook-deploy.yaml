@@ -64,8 +64,8 @@ jobs:
           URL=$(echo "$OUTPUT" | grep -oP 'https://app.widgetbook.io/[^\s]+')
           echo "UUID: $UUID"
           echo "URL: $URL"
-          echo "::set-output name=build_uuid::$UUID"
-          echo "::set-output name=build_url::$URL"
+          echo "build_uuid=$UUID" >> $GITHUB_OUTPUT
+          echo "build_url=$URL" >> $GITHUB_OUTPUT
 
       - name: Post PR Comment
         uses: peter-evans/create-or-update-comment@v2
