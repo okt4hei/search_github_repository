@@ -26,11 +26,19 @@ class WidgetbookApp extends StatelessWidget {
           themes: <WidgetbookTheme<ThemeData>>[
             WidgetbookTheme<ThemeData>(
               name: 'Light',
-              data: ThemeData.light(),
+              data: ThemeData(
+                colorSchemeSeed: Colors.blueGrey,
+                useMaterial3: true,
+                brightness: Brightness.light,
+              ),
             ),
             WidgetbookTheme<ThemeData>(
               name: 'Dark',
-              data: ThemeData.dark(),
+              data: ThemeData(
+                colorSchemeSeed: Colors.blueGrey,
+                useMaterial3: true,
+                brightness: Brightness.dark,
+              ),
             ),
           ],
         ),
