@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
@@ -41,6 +42,16 @@ class WidgetbookApp extends StatelessWidget {
           scales: <double>[1.0, 2.0],
         ),
         InspectorAddon(),
+        BuilderAddon(
+          name: 'ScreenUtil',
+          builder: (context, child) {
+            return ScreenUtilInit(
+              designSize: const Size(411, 960), // Sony Xperia 1 II
+              builder: (context, child) => child!,
+              child: child,
+            );
+          },
+        )
       ],
     );
   }
