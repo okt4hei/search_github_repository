@@ -1,0 +1,81 @@
+name: deploy widgetbook
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Fetch flutter config
+        uses: kuhnroyal/flutter-fvm-config-action@v2
+        id: fvm-config-action
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+          cache: true
+          cache-key: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}-${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            ${{ github.workspace }}/.packages
+            ${{ github.workspace }}/.flutter-plugins
+            ${{ github.workspace }}/.flutter-plugin-dependencies
+            ${{ github.workspace }}/.dart_tool/package_config.json
+          key: build-pubspec-${{ hashFiles(format('{0}{1}', github.workspace, '/pubspec.lock')) }}
+          restore-keys: |
+            build-pubspec-
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Widgetbook
+        run: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter build web --target lib/widgetbook.dart
+
+      - name: activate widgetbook cli
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Widgetbook Build
+        id: push
+        run: |
+          OUTPUT=$(widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }})
+          echo $OUTPUT
+          UUID=$(echo "$OUTPUT" | grep -oP 'Build draft \[\K[^\]]+')
+          URL=$(echo "$OUTPUT" | grep -oP 'https://app.widgetbook.io/[^\s]+')
+          echo "UUID: $UUID"
+          echo "URL: $URL"
+          echo "build_uuid=$UUID" >> $GITHUB_OUTPUT
+          echo "build_url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Post PR Comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Widgetbook Cloudに新しいビルドがアップロードされました。
+            
+            PRタイトル: ${{ github.event.pull_request.title }}
+            ビルド詳細: [ビルドURL](${{ steps.push.outputs.build_url }})
+            サイト: https://hosting.widgetbook.io/${{ steps.push.outputs.build_uuid }}/index.html
