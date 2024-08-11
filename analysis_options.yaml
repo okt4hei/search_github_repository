@@ -7,3 +7,8 @@ linter:
     prefer_single_quotes: true
     sort_pub_dependencies: true
     unnecessary_await_in_return: true
+
+# widgetbookの自動生成ファイルをgitignoreしているため、analyzeから除外する
+analyzer:
+  exclude:
+    - lib/widgetbook.dart
