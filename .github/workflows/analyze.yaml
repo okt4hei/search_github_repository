@@ -1,0 +1,49 @@
+name: analyze
+
+on:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-22.04
+
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch flutter config
+        uses: kuhnroyal/flutter-fvm-config-action@v2
+        id: fvm-config-action
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+          cache: true
+          cache-key: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}-${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            ${{ github.workspace }}/.packages
+            ${{ github.workspace }}/.flutter-plugins
+            ${{ github.workspace }}/.flutter-plugin-dependencies
+            ${{ github.workspace }}/.dart_tool/package_config.json
+          key: build-pubspec-${{ hashFiles(format('{0}{1}', github.workspace, '/pubspec.lock')) }}
+          restore-keys: |
+            build-pubspec-
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Report analyze
+        uses: invertase/github-action-dart-analyzer@v1
+        with:
+          fatal-infos: true
