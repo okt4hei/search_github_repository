@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -56,6 +58,8 @@ class WidgetbookApp extends StatelessWidget {
             return ScreenUtilInit(
               designSize: const Size(411, 960), // Sony Xperia 1 II
               builder: (context, child) => child!,
+              minTextAdapt: true,
+              fontSizeResolver: (size, _) => min(size.sp, size.r),
               child: child,
             );
           },

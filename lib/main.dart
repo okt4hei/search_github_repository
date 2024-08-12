@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
+      fontSizeResolver: (size, _) => min(size.sp, size.r),
       child: const MyHomePage(title: 'Search Repository'),
     );
   }
