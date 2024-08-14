@@ -47,7 +47,7 @@ class WidgetbookApp extends StatelessWidget {
           initialDevice: Devices.android.sonyXperia1II,
         ),
         TextScaleAddon(
-          scales: <double>[1.0, 2.0],
+          scales: <double>[1.0, 1.5],
         ),
         InspectorAddon(),
         BuilderAddon(
@@ -56,6 +56,9 @@ class WidgetbookApp extends StatelessWidget {
             return ScreenUtilInit(
               designSize: const Size(411, 960), // Sony Xperia 1 II
               builder: (context, child) => child!,
+              minTextAdapt: true,
+              screenWidth: MediaQuery.of(context).size.width,
+              screenHeight: MediaQuery.of(context).size.height,
               child: child,
             );
           },

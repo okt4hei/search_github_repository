@@ -230,10 +230,11 @@ packages:
   flutter_screenutil:
     dependency: "direct main"
     description:
-      name: flutter_screenutil
-      sha256: "8239210dd68bee6b0577aa4a090890342d04a136ce1c81f98ee513fc0ce891de"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: d8ec28f6ce80b27d940fe87f2b1bcf18103a6e96
+      url: "https://github.com/okt4hei/flutter_screenutil.git"
+    source: git
     version: "5.9.3"
   flutter_test:
     dependency: "direct dev"

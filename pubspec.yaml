@@ -9,7 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_screenutil: ^5.9.3
+  # flutter_screenutil: ^5.9.3
+  flutter_screenutil:
+    git:
+      url: https://github.com/okt4hei/flutter_screenutil.git
+      ref: master
   widgetbook: ^3.8.1
   widgetbook_annotation: ^3.1.0
 
