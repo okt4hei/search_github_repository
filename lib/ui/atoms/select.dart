@@ -42,7 +42,6 @@ class SelectState extends State<Select> {
         style: style,
         iconSize: 24.r,
         itemHeight: max(kMinInteractiveDimension, 48.r), // 最低でも48ピクセル以上なければならない
-        isExpanded: true,
         items: widget.options
             .asMap()
             .entries
