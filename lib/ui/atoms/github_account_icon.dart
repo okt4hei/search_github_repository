@@ -4,25 +4,23 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class GithubAccountIcon extends StatelessWidget {
-  const GithubAccountIcon({super.key, required this.url});
+  const GithubAccountIcon({super.key, required this.size, required this.url});
 
   final String url;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    final double width = 70.r;
-    final double height = 70.r;
-
     return ClipOval(
       child: Image.network(
         url,
-        width: width,
-        height: height,
+        width: size,
+        height: size,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) {
           return Container(
-            width: width,
-            height: height,
+            width: size,
+            height: size,
             color: Theme.of(context).colorScheme.outlineVariant,
           );
         },
@@ -44,6 +42,7 @@ Widget githubAccountIcon(BuildContext context) {
         url: context.knobs.boolean(label: 'not found', initialValue: false)
             ? ''
             : 'https://avatars.githubusercontent.com/u/142867353?s=60&v=4',
+        size: 70.r,
       ),
     ),
   );

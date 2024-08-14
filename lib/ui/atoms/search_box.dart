@@ -16,12 +16,13 @@ class SearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 40.r,
       child: TextField(
         onChanged: onChanged,
         onSubmitted: onSubmitted,
-        style: const TextStyle(fontSize: 24),
+        style: TextStyle(fontSize: 28.sp),
         decoration: InputDecoration(
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 12.r, horizontal: 12.r),
           hintText: 'Search...',
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.r)),

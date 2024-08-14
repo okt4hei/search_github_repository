@@ -16,10 +16,10 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40.r,
       width: double.infinity,
       child: FilledButton(
         style: FilledButton.styleFrom(
+          padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.r),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.r),
           ),
@@ -27,7 +27,7 @@ class SearchButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.bold),
         ),
       ),
     );
