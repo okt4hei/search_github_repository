@@ -26,7 +26,7 @@ class Pagination extends StatelessWidget {
   /// 表示するページ数
   final int showLength = 5;
 
-  final TextStyle textStyle = const TextStyle(fontSize: 20);
+  TextStyle get textStyle => TextStyle(fontSize: 20.sp);
 
   ButtonStyle get buttonStyle {
     return TextButton.styleFrom(padding: EdgeInsets.zero);
@@ -94,7 +94,6 @@ class Pagination extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 240.r,
-      height: 40.r,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         SizedBox(width: 20.r, child: previous(context)),
         ...List.generate(
