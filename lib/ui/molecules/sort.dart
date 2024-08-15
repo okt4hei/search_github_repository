@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:search_github_repository/ui/atoms/select.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class Sort extends StatefulWidget {
@@ -8,10 +9,14 @@ class Sort extends StatefulWidget {
     super.key,
     required this.options,
     required this.onChanged,
+    required this.showOrderChoice,
   });
 
   final List<String> options;
   final void Function(String, bool) onChanged;
+
+  /// ソート順を選択するかどうか
+  final bool showOrderChoice;
 
   @override
   State<Sort> createState() => SortState();
@@ -47,12 +52,14 @@ class SortState extends State<Sort> {
           selected: selected,
           onChanged: onOptionChanged,
         ),
-        Text(' が ', style: TextStyle(fontSize: 16.sp)),
-        Select(
-          options: const ['多い順', '少ない順'],
-          selected: ascending ? 1 : 0,
-          onChanged: (value) => onOrderChanged(value == 1),
-        ),
+        if (widget.showOrderChoice)
+          Text(' が ', style: TextStyle(fontSize: 16.sp)),
+        if (widget.showOrderChoice)
+          Select(
+            options: const ['多い順', '少ない順'],
+            selected: ascending ? 1 : 0,
+            onChanged: (value) => onOrderChanged(value == 1),
+          ),
       ],
     );
   }
@@ -64,6 +71,10 @@ class SortState extends State<Sort> {
   path: 'molecules',
 )
 Widget sort(BuildContext context) {
+  bool showOrderChoice = context.knobs.boolean(
+    label: 'show order choice',
+    initialValue: true,
+  );
   return Container(
     color: Theme.of(context).colorScheme.surface,
     child: Center(
@@ -71,8 +82,9 @@ Widget sort(BuildContext context) {
         options: const ['watch', 'fork', 'star'],
         onChanged: (String option, bool ascending) {
           debugPrint(
-              'Sort by $option ${ascending ? 'ascending' : 'descending'}');
+              'Sort by $option ${showOrderChoice ? (ascending ? 'ascending' : 'descending') : ''}');
         },
+        showOrderChoice: showOrderChoice,
       ),
     ),
   );
