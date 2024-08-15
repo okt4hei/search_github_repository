@@ -6,18 +6,18 @@ class SearchBox extends StatelessWidget {
   const SearchBox({
     super.key,
     required this.onSubmitted,
-    required this.onChanged,
+    required this.controller,
   });
 
   final void Function(String)? onSubmitted;
-  final void Function(String)? onChanged;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: TextField(
-        onChanged: onChanged,
+        controller: controller,
         onSubmitted: onSubmitted,
         style: TextStyle(fontSize: 28.sp),
         decoration: InputDecoration(
@@ -42,10 +42,10 @@ class SearchBox extends StatelessWidget {
 Widget searchBox(BuildContext context) {
   return Container(
     color: Theme.of(context).colorScheme.surface,
-    child: const Center(
+    child: Center(
       child: SearchBox(
-        onChanged: null,
         onSubmitted: null,
+        controller: TextEditingController(),
       ),
     ),
   );
