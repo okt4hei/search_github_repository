@@ -9,9 +9,11 @@ class RepositoryCard extends StatelessWidget {
   const RepositoryCard({
     super.key,
     required this.repository,
+    required this.onTap,
   });
 
   final Repository repository;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +99,10 @@ Widget repositoryCard(BuildContext context) {
       child: Column(
         children: [
           const Spacer(),
-          RepositoryCard(repository: repository),
+          RepositoryCard(
+            repository: repository,
+            onTap: () {},
+          ),
           const Spacer(),
         ],
       ),
