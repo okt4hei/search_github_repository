@@ -54,7 +54,7 @@ class GithubInfoIcon extends StatelessWidget {
         child: Row(
           children: [
             title,
-            SizedBox(width: (isDetail ? 20 : 8).r),
+            SizedBox(width: (isDetail ? 20 : 4).r),
             Text(
               number.toString(),
               style: TextStyle(fontSize: (isDetail ? 24 : 16).sp),
