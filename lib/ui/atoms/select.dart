@@ -32,8 +32,8 @@ class SelectState extends State<Select> {
       padding: EdgeInsets.only(left: 8.r),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.onSurface,
-          width: 1.r,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
+          width: 0.5.r,
         ),
         borderRadius: BorderRadius.circular(6.r),
       ),
