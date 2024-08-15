@@ -34,11 +34,9 @@ class Search extends StatelessWidget {
                 onSubmitted: onSubmitted,
               ),
               SizedBox(height: 30.r),
-              IntrinsicWidth(
-                child: SearchButton(
-                  onPressed: () => onSubmitted(query),
-                  label: '検索',
-                ),
+              SearchButton(
+                onPressed: () => onSubmitted(query),
+                label: '検索',
               ),
             ],
           )
@@ -51,11 +49,9 @@ class Search extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 20.r),
-              IntrinsicWidth(
-                child: SearchButton(
-                  onPressed: () => onSubmitted(query),
-                  label: '検索',
-                ),
+              SearchButton(
+                onPressed: () => onSubmitted(query),
+                label: '検索',
               ),
             ],
           );

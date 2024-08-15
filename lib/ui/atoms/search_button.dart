@@ -16,7 +16,6 @@ class SearchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
       child: FilledButton(
         style: FilledButton.styleFrom(
           padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 16.r),
