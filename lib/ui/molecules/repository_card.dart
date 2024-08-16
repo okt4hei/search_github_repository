@@ -17,60 +17,63 @@ class RepositoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 8.r),
-        child: Row(
-          children: [
-            GithubAccountIcon(size: 70.r, url: repository.ownerIconUrl),
-            SizedBox(width: 10.r),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    repository.name,
-                    style:
-                        TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10.r),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          repository.ownerName,
-                          style: TextStyle(fontSize: 16.sp),
-                        ),
-                        SizedBox(width: 6.r),
-                        GithubInfoIcon(
-                          icon: Icons.remove_red_eye_outlined,
-                          label: 'watch',
-                          number: repository.wathers,
-                          isDetail: false,
-                        ),
-                        SizedBox(width: 6.r),
-                        GithubInfoIcon(
-                          icon: Icons.fork_left_outlined,
-                          label: 'fork',
-                          number: repository.forks,
-                          isDetail: false,
-                        ),
-                        SizedBox(width: 6.r),
-                        GithubInfoIcon(
-                          icon: Icons.star_outline,
-                          label: 'star',
-                          number: repository.stars,
-                          isDetail: false,
-                        ),
-                      ],
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 8.r),
+          child: Row(
+            children: [
+              GithubAccountIcon(size: 70.r, url: repository.ownerIconUrl),
+              SizedBox(width: 10.r),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      repository.name,
+                      style: TextStyle(
+                          fontSize: 24.sp, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 10.r),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            repository.ownerName,
+                            style: TextStyle(fontSize: 16.sp),
+                          ),
+                          SizedBox(width: 6.r),
+                          GithubInfoIcon(
+                            icon: Icons.remove_red_eye_outlined,
+                            label: 'watch',
+                            number: repository.wathers,
+                            isDetail: false,
+                          ),
+                          SizedBox(width: 6.r),
+                          GithubInfoIcon(
+                            icon: Icons.fork_left_outlined,
+                            label: 'fork',
+                            number: repository.forks,
+                            isDetail: false,
+                          ),
+                          SizedBox(width: 6.r),
+                          GithubInfoIcon(
+                            icon: Icons.star_outline,
+                            label: 'star',
+                            number: repository.stars,
+                            isDetail: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
