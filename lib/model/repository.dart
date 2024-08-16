@@ -4,7 +4,7 @@ class Repository {
   final String ownerIconUrl;
   final String language;
   final int stars;
-  final int wathers;
+  final int watchers;
   final int forks;
   final int issues;
 
@@ -14,7 +14,7 @@ class Repository {
     required this.ownerIconUrl,
     required this.language,
     required this.stars,
-    required this.wathers,
+    required this.watchers,
     required this.forks,
     required this.issues,
   });
@@ -26,7 +26,7 @@ class Repository {
       ownerIconUrl: json['owner']['avatar_url'],
       language: json['language'],
       stars: json['stargazers_count'],
-      wathers: json['watchers_count'],
+      watchers: json['watchers_count'],
       forks: json['forks_count'],
       issues: json['open_issues_count'],
     );

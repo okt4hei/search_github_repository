@@ -47,7 +47,7 @@ class RepositoryDetail extends StatelessWidget {
                 child: GithubInfoIcon(
                   icon: Icons.remove_red_eye_outlined,
                   label: 'watch',
-                  number: repository.wathers,
+                  number: repository.watchers,
                   isDetail: true,
                 ),
               ),
@@ -96,7 +96,7 @@ Widget repositoryDetail(BuildContext context) {
     language: 'Assembly',
     stars: 10,
     forks: 15,
-    wathers: 1,
+    watchers: 1,
     issues: 5,
   );
   return Container(

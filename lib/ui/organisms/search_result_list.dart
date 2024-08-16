@@ -38,7 +38,7 @@ Widget searchResultList(BuildContext context) {
     language: 'Assembly',
     stars: 10,
     forks: 15,
-    wathers: 1,
+    watchers: 1,
     issues: 5,
   );
   List<Repository> repositories = List.generate(10, (_) => repository);
