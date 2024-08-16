@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:search_github_repository/constants/sort_options.dart';
 import 'package:search_github_repository/ui/atoms/pagination.dart';
 import 'package:search_github_repository/ui/molecules/search.dart';
 import 'package:search_github_repository/ui/molecules/sort.dart';
@@ -10,8 +11,8 @@ class SearchOptions extends StatelessWidget {
     super.key,
     required this.onChanged,
     required this.query,
-    this.selected = 'Best match',
-    this.ascending = false,
+    required this.selected,
+    required this.ascending,
     required this.pageLength,
     required this.currentPage,
   });
@@ -35,15 +36,13 @@ class SearchOptions extends StatelessWidget {
   /// 現在のページ
   final int currentPage;
 
-  final List<String> sortOptions = const ['Best match', 'Star', 'Fork'];
-
   onQuerySubmitted(String query) {
     if (query == this.query) return;
     onChanged(query, selected, ascending, currentPage);
   }
 
   onSortOptionChanged(String selected, bool ascending) {
-    if (selected == 'Best match') {
+    if (selected == SortOptions.bestMatch.name) {
       ascending = false; // Best matchは必ず降順
     }
     onChanged(query, selected, ascending, currentPage);
@@ -55,6 +54,9 @@ class SearchOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> sortOptions = SortOptions.values
+        .map((option) => option.name)
+        .toList(); // Best Match, Star, Fork
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -74,8 +76,8 @@ class SearchOptions extends StatelessWidget {
                 onChanged: onSortOptionChanged,
                 selected: sortOptions.indexOf(selected),
                 ascending: ascending,
-                showOrderChoice:
-                    selected != 'Best match', // Best matchはソート順を選択できない
+                showOrderChoice: selected !=
+                    SortOptions.bestMatch.name, // Best matchはソート順を選択できない
               ),
             ),
             Pagination(
@@ -98,7 +100,7 @@ class SearchOptions extends StatelessWidget {
 Widget searchOptions(BuildContext context) {
   ValueNotifier<List<String>> notifier = ValueNotifier([
     '',
-    'Best match',
+    SortOptions.bestMatch.name,
     'false',
     '0',
   ]);
