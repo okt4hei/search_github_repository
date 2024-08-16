@@ -5,11 +5,12 @@ import 'package:search_github_repository/ui/atoms/search_button.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   const Search({
     super.key,
     required this.onSubmitted,
     required this.isMain,
+    this.initiaiValue = '',
   });
 
   final void Function(String) onSubmitted;
@@ -17,25 +18,40 @@ class Search extends StatelessWidget {
   /// メイン画面用の検索バーかどうか
   final bool isMain;
 
+  final String initiaiValue;
+
+  @override
+  State<Search> createState() => SearchState();
+}
+
+class SearchState extends State<Search> {
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = widget.initiaiValue;
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String query = '';
-
-    onChanged(String value) {
-      query = value;
-    }
-
-    return isMain
+    return widget.isMain
         ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SearchBox(
-                onChanged: onChanged,
-                onSubmitted: onSubmitted,
+                onSubmitted: widget.onSubmitted,
+                controller: controller,
               ),
               SizedBox(height: 30.r),
               SearchButton(
-                onPressed: () => onSubmitted(query),
+                onPressed: () => widget.onSubmitted(controller.text),
                 label: '検索',
               ),
             ],
@@ -44,13 +60,13 @@ class Search extends StatelessWidget {
             children: [
               Expanded(
                 child: SearchBox(
-                  onChanged: onChanged,
-                  onSubmitted: onSubmitted,
+                  onSubmitted: widget.onSubmitted,
+                  controller: controller,
                 ),
               ),
               SizedBox(width: 20.r),
               SearchButton(
-                onPressed: () => onSubmitted(query),
+                onPressed: () => widget.onSubmitted(controller.text),
                 label: '検索',
               ),
             ],
