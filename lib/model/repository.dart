@@ -22,9 +22,9 @@ class Repository {
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
       name: json['name'],
-      ownerName: json['owner']['login'],
-      ownerIconUrl: json['owner']['avatar_url'],
-      language: json['language'],
+      ownerName: json['owner']?['login'] ?? '',
+      ownerIconUrl: json['owner']?['avatar_url'] ?? '',
+      language: json['language'] ?? '',
       stars: json['stargazers_count'],
       watchers: json['watchers_count'],
       forks: json['forks_count'],
