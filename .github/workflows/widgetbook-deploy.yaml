@@ -62,10 +62,13 @@ jobs:
           echo $OUTPUT
           UUID=$(echo "$OUTPUT" | grep -oP 'Build draft \[\K[^\]]+')
           URL=$(echo "$OUTPUT" | grep -oP 'https://app.widgetbook.io/[^\s]+')
+          ALT_URL=$(echo "$URL" | sed '0,/app.widgetbook.io/{s/app/cdn/}')
           echo "UUID: $UUID"
           echo "URL: $URL"
           echo "build_uuid=$UUID" >> $GITHUB_OUTPUT
           echo "build_url=$URL" >> $GITHUB_OUTPUT
+          echo "alt_url=$ALT_URL" >> $GITHUB_OUTPUT
+          
 
       - name: Post PR Comment
         uses: peter-evans/create-or-update-comment@v2
@@ -79,3 +82,4 @@ jobs:
             PRタイトル: ${{ github.event.pull_request.title }}
             ビルド詳細: [ビルドURL](${{ steps.push.outputs.build_url }})
             サイト: https://hosting.widgetbook.io/${{ steps.push.outputs.build_uuid }}/index.html
+            またはこちら: ${{ steps.push.outputs.alt_url }}/index.html
