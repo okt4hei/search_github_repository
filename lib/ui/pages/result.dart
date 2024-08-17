@@ -156,22 +156,19 @@ class ResultState extends State<Result> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SearchOptions(
-                onChanged: onQuerySubmitted,
+        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+        child: Column(
+          children: [
+            SearchOptions(
+              onChanged: onQuerySubmitted,
+              searchResultNotifier: searchResultNotifier,
+            ),
+            Expanded(
+              child: SearchResultList(
                 searchResultNotifier: searchResultNotifier,
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: SearchResultList(
-                  searchResultNotifier: searchResultNotifier,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
