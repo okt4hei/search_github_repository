@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:search_github_repository/ui/custom_size_extension.dart';
 import 'package:search_github_repository/model/query_options.dart';
 import 'package:search_github_repository/ui/molecules/search.dart';
 import 'package:search_github_repository/ui/pages/result.dart';
@@ -49,7 +49,7 @@ class TopState extends State<Top> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.r),
+            padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 32.r),
             child: Column(
               children: [
                 Image.asset(githubImagePath, width: 200.r),

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:search_github_repository/constants/sort_options.dart';
 import 'package:search_github_repository/model/query_options.dart';
 import 'package:search_github_repository/model/search_result.dart';
 import 'package:search_github_repository/ui/atoms/pagination.dart';
+import 'package:search_github_repository/ui/custom_size_extension.dart';
 import 'package:search_github_repository/ui/molecules/search.dart';
 import 'package:search_github_repository/ui/molecules/sort.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
