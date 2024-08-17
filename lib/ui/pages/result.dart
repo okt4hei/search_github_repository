@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:search_github_repository/ui/custom_size_extension.dart';
 import 'package:search_github_repository/constants/sort_options.dart';
 import 'package:search_github_repository/model/query_options.dart';
 import 'package:search_github_repository/model/search_result.dart';
@@ -156,7 +156,7 @@ class ResultState extends State<Result> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+        padding: EdgeInsets.symmetric(vertical: 20.r, horizontal: 10.r),
         child: Column(
           children: [
             SearchOptions(
