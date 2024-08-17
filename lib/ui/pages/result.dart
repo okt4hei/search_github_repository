@@ -30,7 +30,7 @@ class ResultState extends State<Result> {
   final int perPage = 10;
 
   /// 現在の検索結果のインデックス
-  final ValueNotifier<int> currentIndexNotifier = ValueNotifier(0);
+  final ValueNotifier<int> currentIndexNotifier = ValueNotifier(-1);
 
   int get currentIndex => currentIndexNotifier.value;
   set currentIndex(int value) => currentIndexNotifier.value = value;
@@ -113,6 +113,7 @@ class ResultState extends State<Result> {
   void initState() {
     super.initState();
     currentIndexNotifier.addListener(() {
+      debugPrint('currentIndex: $currentIndex');
       searchResultNotifier.value = results[currentIndex];
     });
     if (widget.initialQueryOptions != null) {

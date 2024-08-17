@@ -20,6 +20,11 @@ class Search extends StatelessWidget {
 
   final TextEditingController controller;
 
+  onSubmit(String query) {
+    if (query.isEmpty) return;
+    onSubmitted(query);
+  }
+
   @override
   Widget build(BuildContext context) {
     return isMain
@@ -27,12 +32,12 @@ class Search extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SearchBox(
-                onSubmitted: onSubmitted,
+                onSubmitted: onSubmit,
                 controller: controller,
               ),
               SizedBox(height: 30.r),
               SearchButton(
-                onPressed: () => onSubmitted(controller.text),
+                onPressed: () => onSubmit(controller.text),
                 label: '検索',
               ),
             ],
@@ -41,13 +46,13 @@ class Search extends StatelessWidget {
             children: [
               Expanded(
                 child: SearchBox(
-                  onSubmitted: onSubmitted,
+                  onSubmitted: onSubmit,
                   controller: controller,
                 ),
               ),
               SizedBox(width: 20.r),
               SearchButton(
-                onPressed: () => onSubmitted(controller.text),
+                onPressed: () => onSubmit(controller.text),
                 label: '検索',
               ),
             ],

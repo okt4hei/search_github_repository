@@ -11,7 +11,7 @@ class GithubRepositorySearch {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://api.github.com/search/repositories?q=$query${orderBy != null ? '&sort=$orderBy' : ''}${ascending != null ? '&order=${ascending ? 'asc' : 'desc'}' : ''}&per_page=$perPage&page=$page'),
+            'https://api.github.com/search/repositories?q=$query${orderBy != null ? '&sort=$orderBy' : ''}${ascending != null ? '&order=${ascending ? 'asc' : 'desc'}' : ''}&per_page=$perPage&page=${page + 1}'),
       );
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
