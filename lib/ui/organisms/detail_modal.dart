@@ -6,6 +6,7 @@ import 'package:search_github_repository/ui/molecules/repository_card.dart';
 import 'package:search_github_repository/ui/molecules/repository_detail.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// リポジトリの詳細を表示するモーダル
 class DetailModal extends StatelessWidget {
   const DetailModal({
     super.key,
@@ -42,7 +43,7 @@ class DetailModal extends StatelessWidget {
       onTap: () => showDialog(
         context: context,
         builder: dialog,
-        useRootNavigator: false, // widgetbookの場合はfalseにする
+        useRootNavigator: false, // falseにしないとWidgetbook上で表示が崩れる
       ),
     );
   }

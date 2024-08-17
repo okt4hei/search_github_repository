@@ -55,16 +55,17 @@ class WidgetbookApp extends StatelessWidget {
         BuilderAddon(
           name: 'ScreenUtil',
           builder: (context, child) {
+            final size = MediaQuery.of(context).size;
             return ScreenUtilInit(
-              designSize: const Size(411, 960), // Sony Xperia 1 II
+              designSize: const Size(411, 960), // Sony Xperia 1 II を基準とする
               builder: (context, child) => child!,
               minTextAdapt: true,
-              screenWidth: MediaQuery.of(context).size.width,
-              screenHeight: MediaQuery.of(context).size.height,
+              screenWidth: size.width, // widgetbookで表示されるデバイスフレームの幅
+              screenHeight: size.height, // widgetbookで表示されるデバイスフレームの高さ
               child: child,
             );
           },
-        )
+        ),
       ],
     );
   }

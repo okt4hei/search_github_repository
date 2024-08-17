@@ -1,3 +1,4 @@
+/// Githubのリポジトリ情報を保持するクラス
 class Repository {
   final String name;
   final String ownerName;
@@ -18,6 +19,17 @@ class Repository {
     required this.forks,
     required this.issues,
   });
+
+  static Repository template = Repository(
+    name: 'リポジトリ名',
+    ownerName: 'okt4hei',
+    ownerIconUrl: 'https://avatars.githubusercontent.com/u/142867353?s=60&v=4',
+    language: 'Assembly',
+    stars: 10,
+    forks: 15,
+    watchers: 1,
+    issues: 5,
+  );
 
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(

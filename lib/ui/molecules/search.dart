@@ -5,6 +5,7 @@ import 'package:search_github_repository/ui/atoms/search_button.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// 検索バーと検索ボタンのセット
 class Search extends StatelessWidget {
   const Search({
     super.key,
@@ -16,12 +17,13 @@ class Search extends StatelessWidget {
   final void Function(String) onSubmitted;
 
   /// メイン画面用の検索バーかどうか
+  /// メイン画面用の場合は縦に配置
   final bool isMain;
 
   final TextEditingController controller;
 
   onSubmit(String query) {
-    if (query.isEmpty) return;
+    if (query.isEmpty) return; // 空文字の場合は何もしない
     onSubmitted(query);
   }
 

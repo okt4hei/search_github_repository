@@ -21,11 +21,6 @@ class Select extends StatefulWidget {
 }
 
 class SelectState extends State<Select> {
-  TextStyle get style => TextStyle(
-        color: Theme.of(context).colorScheme.onSurface,
-        fontSize: 16.sp,
-      );
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +34,10 @@ class SelectState extends State<Select> {
       ),
       child: DropdownButton(
         underline: const SizedBox.shrink(),
-        style: style,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSurface,
+          fontSize: 16.sp,
+        ),
         iconSize: 24.r,
         itemHeight: max(kMinInteractiveDimension, 48.r), // 最低でも48ピクセル以上なければならない
         items: widget.options

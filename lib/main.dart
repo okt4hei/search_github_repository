@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(411, 960), // Sony Xperia 1 II
+      designSize: const Size(411, 960), // Sony Xperia 1 II を基準とする
       builder: (_, child) {
         return MaterialApp(
           title: 'Search Repository',

@@ -1,3 +1,4 @@
+/// ソートのオプション
 enum SortOptions {
   bestMatch,
   star,

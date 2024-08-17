@@ -5,6 +5,7 @@ import 'package:search_github_repository/ui/molecules/search.dart';
 import 'package:search_github_repository/ui/pages/result.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// トップ画面
 class Top extends StatefulWidget {
   const Top({
     super.key,
@@ -27,6 +28,7 @@ class TopState extends State<Top> {
     super.dispose();
   }
 
+  /// 検索が実行されたとき
   onSubmitted(String query, BuildContext context) {
     if (widget.isWidgetbook) return;
     Navigator.of(context).push(MaterialPageRoute(
@@ -35,6 +37,7 @@ class TopState extends State<Top> {
                 query: query, sort: 'Best Match', ascending: false, page: 0))));
   }
 
+  /// テーマに応じたGitHubのロゴ画像のパス
   String get githubImagePath {
     if (Theme.of(context).brightness == Brightness.dark) {
       return 'assets/github-mark-white.png';

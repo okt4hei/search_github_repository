@@ -18,14 +18,14 @@ class SearchResult {
     required this.repositories,
   });
 
-  static SearchResult get template => SearchResult(
-        queryOptions: const QueryOptions(
-          query: '',
-          sort: 'Best Match',
-          ascending: false,
-          page: 0,
-        ),
-        pageLength: Future.value(1),
-        repositories: Future.value([]),
-      );
+  static SearchResult template = SearchResult(
+    queryOptions: const QueryOptions(
+      query: '',
+      sort: 'Best Match',
+      ascending: false,
+      page: 0,
+    ),
+    pageLength: Future.value(1),
+    repositories: Future.value([]),
+  );
 }

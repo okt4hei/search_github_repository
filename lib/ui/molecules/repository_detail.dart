@@ -5,6 +5,7 @@ import 'package:search_github_repository/ui/atoms/github_account_icon.dart';
 import 'package:search_github_repository/ui/atoms/github_info_icon.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// リポジトリの詳細情報
 class RepositoryDetail extends StatelessWidget {
   const RepositoryDetail({
     super.key,

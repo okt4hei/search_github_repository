@@ -9,6 +9,7 @@ import 'package:search_github_repository/ui/organisms/search_options.dart';
 import 'package:search_github_repository/ui/organisms/search_result_list.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// 検索結果画面
 class Result extends StatefulWidget {
   const Result(
       {super.key, this.initialQueryOptions, this.isWidgetbook = false});
@@ -39,6 +40,7 @@ class ResultState extends State<Result> {
   final ValueNotifier<SearchResult> searchResultNotifier =
       ValueNotifier(SearchResult.template);
 
+  /// 次の検索結果へ
   AppBarButton get forwardButton {
     return AppBarButton(
       icon: Icons.arrow_forward,
@@ -47,6 +49,7 @@ class ResultState extends State<Result> {
     );
   }
 
+  /// 前の検索結果へ
   AppBarButton get backButton {
     return AppBarButton(
       icon: Icons.arrow_back,
@@ -54,12 +57,13 @@ class ResultState extends State<Result> {
     );
   }
 
+  /// 閉じるボタン
   AppBarButton get closeButton {
     return AppBarButton(
       icon: Icons.close,
       onPressed: widget.isWidgetbook
           ? () {
-              // 履歴をリセット
+              // widgetbookの場合は画面を閉じずに履歴をリセット
               if (results.length > 1) {
                 results.removeRange(1, results.length);
               }
