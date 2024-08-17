@@ -28,7 +28,7 @@ class AppBarButton extends StatelessWidget {
   type: AppBarButton,
   path: 'atoms',
 )
-Widget githubAccountIcon(BuildContext context) {
+Widget appBarButton(BuildContext context) {
   return Container(
     color: Theme.of(context).colorScheme.surface,
     child: Center(

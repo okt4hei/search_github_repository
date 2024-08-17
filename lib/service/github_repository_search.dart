@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:search_github_repository/constants/sort_options.dart';
 import 'package:search_github_repository/model/repository.dart';
 
+/// GitHubのリポジトリ検索を行うクラス
 class GithubRepositorySearch {
   static Future<GithubRepositorySearchResponse> _search(
       String query, int perPage, int page,
@@ -40,8 +41,12 @@ class GithubRepositorySearch {
   }
 }
 
+/// GitHubのリポジトリ検索結果
 class GithubRepositorySearchResponse {
+  /// 検索結果のリポジトリ一覧
   final List<Repository> repositories;
+
+  /// 検索結果の総数
   final int totalCount;
 
   GithubRepositorySearchResponse({

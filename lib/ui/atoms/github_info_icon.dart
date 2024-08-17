@@ -3,6 +3,7 @@ import 'package:search_github_repository/ui/custom_size_extension.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// Githubリポジトリの情報(watch, fork, star)を表示するウィジェット
 class GithubInfoIcon extends StatelessWidget {
   const GithubInfoIcon({
     super.key,
@@ -16,10 +17,12 @@ class GithubInfoIcon extends StatelessWidget {
   final String label;
   final int number;
 
-  /// 大きめのiconでlabelを表示する
+  /// 詳細モーダル用の表示かどうか
+  /// 大きめのiconとlabelを表示する
   final bool isDetail;
 
   Widget get title {
+    // isDetailがtrueの場合はlabelを表示
     if (isDetail) {
       return Row(
         children: [

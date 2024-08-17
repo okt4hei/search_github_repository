@@ -4,13 +4,14 @@ import 'package:search_github_repository/model/search_result.dart';
 import 'package:search_github_repository/ui/organisms/detail_modal.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// 検索結果のリスト
 class SearchResultList extends StatelessWidget {
   const SearchResultList({
     super.key,
     required this.searchResultNotifier,
   });
 
-  /// 直前の検索結果
+  /// 検索結果
   final ValueNotifier<SearchResult> searchResultNotifier;
 
   @override
@@ -21,6 +22,7 @@ class SearchResultList extends StatelessWidget {
           return FutureBuilder(
             future: searchResult.repositories,
             builder: (context, snapshot) {
+              // データ取得中はローディングを表示
               if (snapshot.connectionState != ConnectionState.done) {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -45,17 +47,7 @@ class SearchResultList extends StatelessWidget {
   path: 'organisms',
 )
 Widget searchResultList(BuildContext context) {
-  Repository repository = Repository(
-    name: 'リポジトリ名',
-    ownerName: 'okt4hei',
-    ownerIconUrl: 'https://avatars.githubusercontent.com/u/142867353?s=60&v=4',
-    language: 'Assembly',
-    stars: 10,
-    forks: 15,
-    watchers: 1,
-    issues: 5,
-  );
-  List<Repository> repositories = List.generate(10, (_) => repository);
+  List<Repository> repositories = List.generate(10, (_) => Repository.template);
   ValueNotifier<SearchResult> searchResultNotifier = ValueNotifier(SearchResult(
       queryOptions: SearchResult.template.queryOptions,
       pageLength: Future.value(10),

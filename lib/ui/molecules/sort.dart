@@ -3,6 +3,7 @@ import 'package:search_github_repository/ui/custom_size_extension.dart';
 import 'package:search_github_repository/ui/atoms/select.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// ソートオプションとソート順を選択
 class Sort extends StatelessWidget {
   const Sort({
     super.key,
@@ -14,6 +15,8 @@ class Sort extends StatelessWidget {
   });
 
   final List<String> options;
+
+  /// 選択されているソートオプションのインデックス
   final int selected;
 
   /// ソート順が変更されたときに呼ばれるコールバック
@@ -23,13 +26,16 @@ class Sort extends StatelessWidget {
   /// ソート順を選択するかどうか
   final bool showOrderChoice;
 
+  /// 昇順かどうか
   final bool ascending;
 
+  /// ソートオプションが変更されたとき
   onOptionChanged(int value) {
     if (selected == value) return;
     onChanged(options[value], ascending);
   }
 
+  /// ソート順が変更されたとき
   onOrderChanged(bool value) {
     if (ascending == value) return;
     onChanged(options[selected], value);
@@ -64,7 +70,7 @@ class Sort extends StatelessWidget {
 )
 Widget sort(BuildContext context) {
   ValueNotifier<int> notifier = ValueNotifier(0);
-  const List<String> options = ['best match', 'fork', 'star'];
+  const List<String> options = ['Best Match', 'Star', 'Fork'];
   return Container(
     color: Theme.of(context).colorScheme.surface,
     child: Center(

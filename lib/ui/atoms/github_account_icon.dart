@@ -18,6 +18,7 @@ class GithubAccountIcon extends StatelessWidget {
         height: size,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) {
+          // 存在しない場合はグレーの円を表示
           return Container(
             width: size,
             height: size,

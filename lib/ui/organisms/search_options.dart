@@ -10,6 +10,7 @@ import 'package:search_github_repository/ui/molecules/search.dart';
 import 'package:search_github_repository/ui/molecules/sort.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// 検索・ソート・ページネーションのセット
 class SearchOptions extends StatefulWidget {
   const SearchOptions({
     super.key,
@@ -44,6 +45,7 @@ class SearchOptionsState extends State<SearchOptions> {
     super.dispose();
   }
 
+  /// 検索ボックスに入力されたとき
   onQuerySubmitted(String query) {
     if (query.isEmpty || queryOptions.query == query) return;
     widget.onChanged(QueryOptions(
@@ -54,6 +56,7 @@ class SearchOptionsState extends State<SearchOptions> {
     ));
   }
 
+  /// ソートオプションが変更されたとき
   onSortOptionChanged(String sort, bool ascending) {
     if (sort == SortOptions.bestMatch.name) {
       ascending = false; // Best matchは必ず降順
@@ -66,6 +69,7 @@ class SearchOptionsState extends State<SearchOptions> {
     ));
   }
 
+  /// ページが変更されたとき
   onPageChanged(int page) {
     widget.onChanged(QueryOptions(
       query: queryOptions.query,
@@ -78,50 +82,52 @@ class SearchOptionsState extends State<SearchOptions> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: widget.searchResultNotifier,
-        builder: (_, __, ___) {
-          controller.text = queryOptions.query;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Search(
-                onSubmitted: onQuerySubmitted,
-                isMain: false,
-                controller: controller,
-              ),
-              SizedBox(height: 10.r),
-              Wrap(
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  IntrinsicWidth(
-                    child: Sort(
-                      options: sortOptions,
-                      onChanged: onSortOptionChanged,
-                      selected: sortOptions.indexOf(queryOptions.sort),
-                      ascending: queryOptions.ascending,
-                      showOrderChoice: queryOptions.sort !=
-                          SortOptions.bestMatch.name, // Best matchはソート順を選択できない
-                    ),
+      valueListenable: widget.searchResultNotifier,
+      builder: (_, __, ___) {
+        controller.text = queryOptions.query;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Search(
+              onSubmitted: onQuerySubmitted,
+              isMain: false,
+              controller: controller,
+            ),
+            SizedBox(height: 10.r),
+            Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                IntrinsicWidth(
+                  child: Sort(
+                    options: sortOptions,
+                    onChanged: onSortOptionChanged,
+                    selected: sortOptions.indexOf(queryOptions.sort),
+                    ascending: queryOptions.ascending,
+                    showOrderChoice: queryOptions.sort !=
+                        SortOptions.bestMatch.name, // Best matchはソート順を選択できない
                   ),
-                  FutureBuilder(
-                    future: pageLength,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState != ConnectionState.done) {
-                        return const SizedBox.shrink();
-                      }
-                      return Pagination(
-                        length: snapshot.data!,
-                        currentPage: queryOptions.page,
-                        onPageChanged: onPageChanged,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          );
-        });
+                ),
+                // ページネーションは検索結果を待ってから表示する
+                FutureBuilder(
+                  future: pageLength,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      return const SizedBox.shrink();
+                    }
+                    return Pagination(
+                      length: snapshot.data!,
+                      currentPage: queryOptions.page,
+                      onPageChanged: onPageChanged,
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
