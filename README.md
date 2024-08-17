@@ -1,16 +1,25 @@
 # search_github_repository
 
-A new Flutter project.
+Githubのリポジトリを検索するAndroid用Flutterアプリ
 
-## Getting Started
+See: https://github.com/yumemi-inc/flutter-engineer-codecheck?tab=readme-ov-file
 
-This project is a starting point for a Flutter application.
+## 動作
+![demo](https://github.com/user-attachments/assets/96bf7bb1-8bc8-48bd-8708-5b3a7e45bc71)
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 実行方法
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+$ fvm use
+$ fvm flutter run lib/main.dart
+```
+
+## widgetbookの確認方法
+
+このプロジェクトでは[widgetbook](https://pub.dev/packages/widgetbook)を用いてUIの確認をすることができます。
+```
+$ fvm use
+$ fvm flutter pub run build_runner build --delete-conflicting-outputs
+$ fvm flutter run lib/widgetbook.dart -d chrome
+```
